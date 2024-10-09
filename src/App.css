@@ -1,0 +1,57 @@
+:root {
+  --star-size: 18px;
+  --star-color: #ddd;
+  --star-background: #fc0;
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+.cart {
+  @media (min-width: 1025px) {
+    .h-custom {
+      height: 100vh !important;
+    }
+  }
+
+  .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+  }
+
+  .card-registration .select-arrow {
+    top: 13px;
+  }
+}
+.products {
+  .bg-image {
+    height: 240px;
+    margin: 10px auto;
+  }
+  .img-fluid {
+    width: 100%;
+    height: 240px;
+  }
+
+  .Stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
+
+    &::before {
+      content: "★★★★★";
+      letter-spacing: 3px;
+      background: linear-gradient(
+        90deg,
+        var(--star-background) var(--percent),
+        var(--star-color) var(--percent)
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
