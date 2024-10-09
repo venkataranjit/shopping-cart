@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartTotal } from "../store/cartSlice";
 
@@ -27,41 +27,41 @@ const Menu = () => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <Link className="navbar-brand mt-2 mt-lg-0" to="/">
+            <NavLink className="navbar-brand mt-2 mt-lg-0" to="/">
               <b>Shopping Cart Demo App</b>
-            </Link>
+            </NavLink>
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <NavLink className="nav-link" to="/">
                   Home
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/products">
+                <NavLink className="nav-link" to="/products">
                   Products
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/fetchdata">
+                <NavLink className="nav-link" to="/fetchdata">
                   Toolkit Fetch Data
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/maps">
+                <NavLink className="nav-link" to="/maps">
                   Maps
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
 
           <div className="d-flex align-items-center">
-            <Link className="text-reset me-3" to="/cart">
+            <NavLink className="text-reset me-3" to="/cart">
               <i className="fas fa-shopping-cart"></i>
               <span className="badge rounded-pill badge-notification bg-danger">
                 {cartCount.totalQuantity}
               </span>
-            </Link>
+            </NavLink>
           </div>
         </div>
       </nav>

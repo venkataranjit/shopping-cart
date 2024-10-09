@@ -59,12 +59,10 @@ const cartSlice = createSlice({
       state.cart = state.cart.reduce((newCart, item) => {
         if (item.id === action.payload) {
           const updatedQuantity = item.quantity - 1;
-          // Only add the item back to the cart if the updated quantity is greater than 0
           if (updatedQuantity > 0) {
             newCart.push({ ...item, quantity: updatedQuantity });
           }
         } else {
-          // Always add the item back if it's not the one being decreased
           newCart.push(item);
         }
         return newCart;
