@@ -3,6 +3,7 @@ import products from "../../products";
 
 const initialData = {
   cart: [],
+  fav: [],
   items: products,
   totalQuantity: 0,
   totalPrice: 0,
@@ -59,10 +60,12 @@ const cartSlice = createSlice({
       state.cart = state.cart.reduce((newCart, item) => {
         if (item.id === action.payload) {
           const updatedQuantity = item.quantity - 1;
+          // Only add the item back to the cart if the updated quantity is greater than 0
           if (updatedQuantity > 0) {
             newCart.push({ ...item, quantity: updatedQuantity });
           }
         } else {
+          // Always add the item back if it's not the one being decreased
           newCart.push(item);
         }
         return newCart;
@@ -71,6 +74,24 @@ const cartSlice = createSlice({
 
     removeItem: (state, action) => {
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+    },
+
+    addToFav: (state, action) => {
+      const favourateItem = state.items.find(
+        (item) => item.id === action.payload
+      );
+
+      if (favourateItem) {
+        const isAlreadyFav = state.fav.some(
+          (item) => item.id === action.payload
+        );
+
+        if (isAlreadyFav) {
+          state.fav = state.fav.filter((item) => item.id !== action.payload);
+        } else {
+          state.fav.push(favourateItem);
+        }
+      }
     },
   },
 });
@@ -81,5 +102,6 @@ export const {
   increaseItem,
   decreaseItem,
   removeItem,
+  addToFav,
 } = cartSlice.actions;
 export default cartSlice.reducer;

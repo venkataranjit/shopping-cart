@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../store/cartSlice";
+import { addToCart, addToFav } from "../store/cartSlice";
+import Fav from "./Fav";
 
 const Products = () => {
   const items = useSelector((state) => state.cartDetails.items);
@@ -15,6 +16,7 @@ const Products = () => {
           {items.map((product) => (
             <div className="col-sm-3" key={product.id}>
               <div className="card">
+                <Fav id={product.id} addToFav={addToFav} dispatch={dispatch} />
                 <div
                   className="bg-image hover-overlay"
                   data-mdb-ripple-init
