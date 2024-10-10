@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartTotal } from "../store/cartSlice";
 
@@ -27,41 +27,46 @@ const Menu = () => {
           </button>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <NavLink className="navbar-brand mt-2 mt-lg-0" to="/">
+            <Link className="navbar-brand mt-2 mt-lg-0" to="/">
               <b>Shopping Cart Demo App</b>
-            </NavLink>
+            </Link>
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/">
+                <Link className="nav-link" to="/">
                   Home
-                </NavLink>
+                </Link>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/products">
+                <Link className="nav-link" to="/products">
                   Products
-                </NavLink>
+                </Link>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/fetchdata">
+                <Link className="nav-link" to="/favproducts">
+                  Favourate Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/fetchdata">
                   Toolkit Fetch Data
-                </NavLink>
+                </Link>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/maps">
+                <Link className="nav-link" to="/maps">
                   Maps
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </div>
 
           <div className="d-flex align-items-center">
-            <NavLink className="text-reset me-3" to="/cart">
+            <Link className="text-reset me-3" to="/cart">
               <i className="fas fa-shopping-cart"></i>
               <span className="badge rounded-pill badge-notification bg-danger">
                 {cartCount.totalQuantity}
               </span>
-            </NavLink>
+            </Link>
           </div>
         </div>
       </nav>
