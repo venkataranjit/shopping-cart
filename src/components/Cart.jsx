@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -6,6 +6,7 @@ import {
   increaseItem,
   decreaseItem,
   removeItem,
+  addCoupon,
 } from "../store/cartSlice";
 
 const Cart = () => {
@@ -13,8 +14,8 @@ const Cart = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getCartTotal());
-  }, [cartDetails.cart]);
-
+  }, [cartDetails]);
+  const [coupon, setCoupon] = useState("");
   return (
     <>
       <div className="cart">
@@ -136,14 +137,17 @@ const Cart = () => {
                             <h6>$ {cartDetails.shippingPrice}</h6>
                           </div>
 
-                          <h5 className="text-uppercase mb-3">Apply Coupon</h5>
+                          <h5 className=" mb-3">Do You Have Any Coupon</h5>
 
                           <div className="mb-5">
                             <div data-mdb-input-init className="form-outline">
                               <input
                                 type="text"
-                                id="form3Examplea2"
+                                id="coupon"
                                 className="form-control form-control-lg"
+                                name="coupon"
+                                value={coupon}
+                                onChange={(e) => setCoupon(e.target.value)}
                               />
                               <label
                                 className="form-label"
@@ -151,6 +155,22 @@ const Cart = () => {
                               >
                                 Enter your code
                               </label>
+
+                              <button
+                                type="button"
+                                data-mdb-button-init
+                                data-mdb-ripple-init
+                                className="btn btn-dark btn-block btn-sm"
+                                data-mdb-ripple-color="dark"
+                                onClick={() => dispatch(addCoupon(coupon))}
+                              >
+                                Apply Coupon
+                              </button>
+                              {cartDetails.discountMsg && (
+                                <span style={{ color: "red" }}>
+                                  {cartDetails.discountMsg}
+                                </span>
+                              )}
                             </div>
                           </div>
 
@@ -168,7 +188,7 @@ const Cart = () => {
                             className="btn btn-dark btn-block btn-lg"
                             data-mdb-ripple-color="dark"
                           >
-                            Payment
+                            Order Now
                           </button>
                         </div>
                       </div>

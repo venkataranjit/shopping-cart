@@ -9,6 +9,8 @@ const initialData = {
   totalPrice: 0,
   shippingPrice: 0,
   finalPrice: 0,
+  discount: 0,
+  discountMsg: "",
 };
 
 const cartSlice = createSlice({
@@ -45,7 +47,12 @@ const cartSlice = createSlice({
           state.shippingPrice = 0;
         }
       }
-      state.finalPrice = state.totalPrice + state.shippingPrice;
+      const discountAmount = state.totalPrice * state.discount;
+      state.finalPrice = (
+        state.totalPrice +
+        state.shippingPrice -
+        discountAmount
+      ).toFixed(2);
     },
     increaseItem: (state, action) => {
       state.cart = state.cart.map((item) => {
@@ -93,6 +100,25 @@ const cartSlice = createSlice({
         }
       }
     },
+    addCoupon: (state, action) => {
+      switch (action.payload) {
+        case "free10":
+          state.discount = 0.1;
+          state.discountMsg = "10% Discount Applied";
+          break;
+        case "free20":
+          state.discount = 0.2;
+          state.discountMsg = "20% Discount Applied";
+          break;
+        case "free30":
+          state.discount = 0.3;
+          state.discountMsg = "30% Discount Applied";
+          break;
+        default:
+          state.discount = 0;
+          state.discountMsg = "Invalid Coupon";
+      }
+    },
   },
 });
 
@@ -103,5 +129,6 @@ export const {
   decreaseItem,
   removeItem,
   addToFav,
+  addCoupon,
 } = cartSlice.actions;
 export default cartSlice.reducer;
