@@ -1,11 +1,9 @@
 import React from "react";
 import "./App.css";
-import Home from "./components/Home";
+
 import Products from "./components/Products";
 import FavourateItems from "./components/FavourateItems";
 import Cart from "./components/Cart";
-import FetchData from "./components/FetchData";
-import Maps from "./components/Maps";
 import Menu from "./components/Menu";
 import { HashRouter, Routes, Route } from "react-router-dom";
 function App() {
@@ -14,12 +12,9 @@ function App() {
       <HashRouter>
         <Menu />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/favproducts" element={<FavourateItems />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/fetchdata" element={<FetchData />} />
-          <Route path="/maps" element={<Maps />} />
         </Routes>
       </HashRouter>
     </>

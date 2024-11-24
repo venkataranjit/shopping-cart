@@ -33,11 +33,6 @@ const Menu = () => {
 
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link className="nav-link" to="/products">
                   Products
                 </Link>
@@ -45,16 +40,6 @@ const Menu = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/favproducts">
                   Favourate Products
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/fetchdata">
-                  Toolkit Fetch Data
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/maps">
-                  Maps
                 </Link>
               </li>
             </ul>

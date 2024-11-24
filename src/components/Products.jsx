@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, addToFav } from "../store/cartSlice";
 import Fav from "./Fav";
@@ -8,6 +7,7 @@ const Products = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cartDetails);
   console.log(state);
+
   return (
     <>
       <div className="container products">
