@@ -16,6 +16,37 @@ const Cart = () => {
     dispatch(getCartTotal());
   }, [cartDetails]);
   const [coupon, setCoupon] = useState("");
+
+  const handlePayment = () => {
+    const options = {
+      key: "rzp_test_S5NjjMuME6NnP2", // Replace with your Razorpay key ID
+      amount: "100", // Amount in smallest currency unit (e.g., paisa)
+      currency: "INR",
+      name: "Your Company Name",
+      description: "Payment for some product",
+      image: "https://yourlogo.com/logo.png", // Optional
+      handler: function (response) {
+        alert(
+          "Payment Successful! Payment ID: " + response.razorpay_payment_id
+        );
+      },
+      prefill: {
+        name: "John Doe", // Optional
+        email: "johndoe@example.com", // Optional
+        contact: "9876543210", // Optional
+      },
+      notes: {
+        address: "Some Address", // Optional
+      },
+      theme: {
+        color: "#F37254", // Optional
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open(); // Open the Razorpay checkout modal
+  };
+
   return (
     <>
       <div className="cart">
@@ -187,6 +218,7 @@ const Cart = () => {
                             data-mdb-ripple-init
                             className="btn btn-dark btn-block btn-lg"
                             data-mdb-ripple-color="dark"
+                            onClick={handlePayment}
                           >
                             Order Now
                           </button>
