@@ -41,7 +41,7 @@ A fully functional shopping cart application built using modern web technologies
 2. **Navigate to the project directory**:
 
    ```bash
-  cd shopping-cart-app
+   cd shopping-cart-app
    ```
 
 3. **Install dependencies**:
