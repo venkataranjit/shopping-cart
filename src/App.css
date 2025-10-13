@@ -19,6 +19,7 @@ body {
     line-height: 2.15;
     padding-left: 0.75em;
     padding-right: 0.75em;
+    line-height: initial;
   }
 
   .card-registration .select-arrow {
