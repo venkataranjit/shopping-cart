@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import products from "../../products";
 
 const initialData = {
   cart: [],
   fav: [],
-  items: products,
+  items: [],
   totalQuantity: 0,
   totalPrice: 0,
   shippingPrice: 0,
@@ -12,6 +12,15 @@ const initialData = {
   discount: 0,
   discountMsg: "",
 };
+
+export const getProducts = createAsyncThunk("user/fetch", async () => {
+  const response = await fetch(import.meta.env.VITE_PRODUCTS_URL);
+  if (!response.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  const data = await response.json();
+  return data;
+});
 
 const cartSlice = createSlice({
   name: "cart",
@@ -119,6 +128,22 @@ const cartSlice = createSlice({
           state.discountMsg = "Invalid Coupon";
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getProducts.pending, (state) => {
+        state.status = "Loading";
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.status = "Success";
+        state.items = action.payload;
+        state.error = false;
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.status = "Fail";
+        state.error = action.error.message;
+        state.items = [];
+      });
   },
 });
 

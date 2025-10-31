@@ -5,7 +5,7 @@ import fetchSlice from "./fetchSlice";
 const store = configureStore({
   reducer: {
     cartDetails: cartSlice,
-    fetchData: fetchSlice,
+    // fetchData: fetchSlice,
   },
 });
 
