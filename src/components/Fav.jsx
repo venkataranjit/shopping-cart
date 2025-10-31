@@ -1,17 +1,22 @@
+import { useSelector } from "react-redux";
 import "./Fav.css";
 
 const Fav = (props) => {
+  const { id, dispatch, addToFav } = props;
+  const favItems = useSelector((state) => state.cartDetails.fav);
+  const isFav = favItems.some((item) => item.id === id);
   return (
     <>
       <div id="main-content">
         <div>
           <input
             type="checkbox"
-            id={`checkbox-${props.id}`}
+            id={`checkbox-${id}`}
             className="checkbox"
-            onClick={() => props.dispatch(props.addToFav(props.id))}
+            checked={isFav}
+            onChange={() => dispatch(addToFav(id))}
           />
-          <label htmlFor={`checkbox-${props.id}`}>
+          <label htmlFor={`checkbox-${id}`}>
             <svg
               id="heart-svg"
               viewBox="467 392 58 57"

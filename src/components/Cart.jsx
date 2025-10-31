@@ -20,7 +20,7 @@ const Cart = () => {
   const handlePayment = () => {
     const options = {
       key: "rzp_test_S5NjjMuME6NnP2", // Replace with your Razorpay key ID
-      amount: "100", // Amount in smallest currency unit (e.g., paisa)
+      amount: Math.round(cartDetails.finalPrice * 88.23) * 100, // Amount in smallest currency unit (e.g., paisa)
       currency: "INR",
       name: "Your Company Name",
       description: "Payment for some product",
@@ -65,8 +65,10 @@ const Cart = () => {
                           <div className="d-flex justify-content-between align-items-center mb-5">
                             <h1 className="fw-bold mb-0">Shopping Cart</h1>
                             <h6 className="mb-0 text-muted">
-                              {cartDetails.cart.length}{" "}
-                              {cartDetails.cart.length === 1 ? "item" : "items"}
+                              {cartDetails.totalQuantity}{" "}
+                              {cartDetails.totalQuantity === 1
+                                ? "item"
+                                : "items"}
                             </h6>
                           </div>
                           <hr className="my-4" />
@@ -156,8 +158,8 @@ const Cart = () => {
                           <div className="d-flex justify-content-between mb-4">
                             <h5>
                               {" "}
-                              {cartDetails.totalQuantity}{" "}
-                              {cartDetails.totalQuantity === 1
+                              {cartDetails.cart.length}{" "}
+                              {cartDetails.cart.length === 1
                                 ? "Product"
                                 : "Products"}
                             </h5>

@@ -1,19 +1,30 @@
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, addToFav } from "../store/cartSlice";
+import { addToCart, addToFav, getProducts } from "../store/cartSlice";
 import Fav from "./Fav";
+import { useEffect } from "react";
 
 const Products = () => {
-  const items = useSelector((state) => state.cartDetails.items);
   const dispatch = useDispatch();
   const state = useSelector((state) => state.cartDetails);
   console.log(state);
 
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  if (state.status === "Loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (state.status === "Fail") {
+    return <div>Error: {error}</div>;
+  }
   return (
     <>
       <div className="container products">
         <h3 style={{ marginTop: "15px" }}>Products</h3>
         <div className="row">
-          {items.map((product) => (
+          {state.items.map((product) => (
             <div className="col-sm-3" key={product.id}>
               <div className="card">
                 <Fav id={product.id} addToFav={addToFav} dispatch={dispatch} />
