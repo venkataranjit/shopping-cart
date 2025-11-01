@@ -17,7 +17,7 @@ const Products = () => {
   }
 
   if (state.status === "Fail") {
-    return <div>Error: {error}</div>;
+    return <div>Error</div>;
   }
   return (
     <>
