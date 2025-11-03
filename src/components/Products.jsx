@@ -1,34 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-<<<<<<< Updated upstream
-import { addToCart, addToFav, getProducts } from "../store/cartSlice";
-import Fav from "./Fav";
-import { useEffect } from "react";
-=======
 import { addToCart, addToFav, getItems } from "../store/cartSlice";
 
 import Fav from "./Fav";
 import { useEffect } from "react";
 import { fetchProducts } from "../store/fetchSlice";
->>>>>>> Stashed changes
 
 const Products = () => {
   const dispatch = useDispatch();
   // const cartState = useSelector((state) => state.cartDetails);
   const fetchState = useSelector((state) => state.fetchData);
 
-<<<<<<< Updated upstream
-  useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
-
-  if (state.status === "Loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (state.status === "Fail") {
-    return <div>Error</div>;
-  }
-=======
   console.log(fetchState);
 
   useEffect(() => {
@@ -49,17 +30,12 @@ const Products = () => {
 
 
   
->>>>>>> Stashed changes
   return (
     <>
       <div className="container products">
         <h3 style={{ marginTop: "15px" }}>Products</h3>
         <div className="row">
-<<<<<<< Updated upstream
-          {state.items.map((product) => (
-=======
           {fetchState.products.map((product) => (
->>>>>>> Stashed changes
             <div className="col-sm-3" key={product.id}>
               <div className="card">
                 <Fav id={product.id} addToFav={addToFav} dispatch={dispatch} />
