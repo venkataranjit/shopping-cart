@@ -42,6 +42,11 @@ const Menu = () => {
                   Favourate Products
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/todo">
+                  Todo App
+                </Link>
+              </li>
             </ul>
           </div>
 

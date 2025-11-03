@@ -1,0 +1,26 @@
+.todoApp{
+    .card{
+        min-height: 85vh;
+    }
+.addTodo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+    button{
+       margin: 0px !important
+    }
+
+}
+.badge{
+    margin-left: 5px;
+    cursor: pointer;
+}
+}
+.stretched-link::after{
+    content: none;
+}
+.line-through{
+    text-decoration: line-through;
+}

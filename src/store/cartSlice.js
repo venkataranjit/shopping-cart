@@ -1,9 +1,19 @@
+<<<<<<< Updated upstream
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import products from "../../products";
 
 const initialData = {
   cart: [],
   fav: [],
+=======
+import { createSlice } from "@reduxjs/toolkit";
+
+const savedFav = JSON.parse(localStorage.getItem("favItems")) || [];
+
+const initialData = {
+  cart: [],
+  fav: savedFav,
+>>>>>>> Stashed changes
   items: [],
   totalQuantity: 0,
   totalPrice: 0,
@@ -13,6 +23,7 @@ const initialData = {
   discountMsg: "",
 };
 
+<<<<<<< Updated upstream
 export const getProducts = createAsyncThunk("user/fetch", async () => {
   const response = await fetch(import.meta.env.VITE_PRODUCTS_URL);
   if (!response.ok) {
@@ -21,11 +32,17 @@ export const getProducts = createAsyncThunk("user/fetch", async () => {
   const data = await response.json();
   return data;
 });
+=======
+
+>>>>>>> Stashed changes
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialData,
   reducers: {
+    getItems: (state, action) => {
+      state.items = action.payload;
+    },
     addToCart: (state, action) => {
       let find = state.cart.findIndex((item) => item.id === action.payload.id);
       if (find >= 0) {
@@ -108,6 +125,7 @@ const cartSlice = createSlice({
           state.fav.push(favourateItem);
         }
       }
+      localStorage.setItem("favItems", JSON.stringify(state.fav));
     },
     addCoupon: (state, action) => {
       switch (action.payload) {
@@ -148,6 +166,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+  getItems,
   addToCart,
   getCartTotal,
   increaseItem,
